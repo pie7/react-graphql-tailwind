@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, Link } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import CrewTable from "./components/CrewTable";
+import Crews from "./components/Crews";
+import Launches from "./components/Launches";
+
+const CrewPage = () => {
+  return (
+    <div className="max-w-screen-sm mx-auto">
+      <div className="mt-10">
+        <Crews />
+      </div>
+      <div className="mt-10">
+        <CrewTable />
+      </div>
+    </div>
+  );
+};
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar items={["launches", "crews"]} />
+
+      <Routes>
+      <Route path="/" element={<></>} />
+        <Route path="crews" element={<CrewPage />} />
+        <Route path="launches" element={<Launches />} />
+      </Routes>
     </div>
   );
 }
