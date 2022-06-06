@@ -30,7 +30,7 @@ const Card = ({
                 <h4 className="mt-1 font-bold font-xl text-lg leading-tight truncate">
                     {mission_name}
                 </h4>
-                <div className="mt-2">{site_name_long}</div>
+                <div className="mt-2 h-16">{site_name_long}</div>
                 <div className="mt-4">
                     <span className="text-green-600 mr-1">{rocket_name}</span>
                     <span className="text-sm font-semibold">{ships_name}</span>
