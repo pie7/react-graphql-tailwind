@@ -1,6 +1,8 @@
 import { useReducer } from "react";
 import { gql, useMutation } from "@apollo/client";
 import { GET_USERS } from "./CrewTable";
+import useToggle from "../hooks/useToggle";
+import { useKeydownEsc } from "../hooks/useKeydownEsc";
 
 const ADD_USER = gql`
   mutation AddUser($name: String!, $rocket: String!) {
@@ -13,7 +15,7 @@ const ADD_USER = gql`
   }
 `;
 
-const Form = () => {
+const Form = ({handleToggle}) => {
   const [addUser] = useMutation(ADD_USER, {
     refetchQueries: [
       GET_USERS,
@@ -51,6 +53,7 @@ const Form = () => {
       onSubmit={(e) => {
         e.preventDefault();
         addUser({ variables: { name: state.name, rocket: state.rocket } });
+        handleToggle();
       }}
     >
       <div className="mb-4">
@@ -64,7 +67,7 @@ const Form = () => {
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="username"
           type="text"
-          placeholder="PAX Name"
+          placeholder="Crew Name"
           onChange={(e) =>
             dispatch({
               type: UPDATE_NAME,
@@ -92,7 +95,7 @@ const Form = () => {
             })
           }
         />
-        <p className="text-red-500 text-xs italic">Please Input Name.</p>
+        <p className="text-red-500 text-xs italic">Please Input Crew Name.</p>
       </div>
       <div className="flex items-center justify-between">
         <button
@@ -108,14 +111,26 @@ const Form = () => {
 
 
 const Crews = () => {
+  const [isToggle, handleToggle] = useToggle()
+  useKeydownEsc(handleToggle)
   return(
     <div>
       <div className="flex justify-end">
-        <button className="uppercase border px-2 py-1">add crew</button>
+        <button
+          className="uppercase border px-2 py-1"
+          onClick={handleToggle}
+        >
+          add crew</button>
       </div>
-      <div className="hidden">
-        <Form />
-      </div>
+
+      {isToggle &&
+        <>
+          <div className="fixed inset-0 flex justify-center items-center z-10">
+            <Form handleToggle={handleToggle}/>
+          </div>
+          <div className="fixed inset-0 w-full h-full bg-black opacity-70"></div>
+        </>
+      }
     </div>
   )
 }

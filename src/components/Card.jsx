@@ -14,15 +14,17 @@ const Card = ({
             <div className={`w-1/3 flex items-center bg-gray-100 p-2 ${overlap ? 'rounded-md overflow-hidden' : ''}`}>
                 <img
                     className="bottom-0 object-cover w-full"
-                    src={mission_patch_small}
+                    src={mission_patch_small?mission_patch_small: 'https://picsum.photos/300/300'}
                     alt="mission_patch"
                 />
             </div>
             <div className={`w-2/3 p-6 ${overlap ? '-mt-6 relative border bg-white mx-3 rounded-md' : ''}`}>
                 <div className='flex items-baseline'>
-                    <span className={`uppercase ${launch_success ? 'bg-teal-500' : 'bg-red-500'} text-white text-sm px-2 inline-block rounded-lg mr-2`}>
-                        {launch_success ? 'SUCCESS' : 'FAIL'}
-                    </span>
+                    {launch_success != null &&
+                        <span className={`uppercase ${launch_success ? 'bg-teal-500' : 'bg-red-500'} text-white text-sm px-2 inline-block rounded-lg mr-2`}>
+                            {launch_success ? 'SUCCESS' : 'FAIL'}
+                        </span>
+                    }
                     <div className="mtext-gray-600 uppercase font-bold text-sm tracking-tight">
                         {date.toISOString().slice(0, 10)}
                     </div>

@@ -92,9 +92,12 @@ const Navbar = ({ items = [] }) => {
     return (
         <header className='px-4 py-3 bg-black sm:flex sm:justify-between sm:items-center'>
             <div className='flex items-center justify-between'>
-                {/* <div className='rounded-lg overflow-hidden'>
-                    <img src="https://picsum.photos/64/64" alt="" />
-                </div> */}
+                <div className='rounded-lg overflow-hidden'>
+                    <a className='block px-4 py-2 hover:bg-gray-500 hover:text-white'
+                        href="/" >
+                        <img src="https://picsum.photos/64/64" alt="" />
+                    </a>
+                </div>
                 <div className='sm:hidden'>
                     <button
                         type="button"
@@ -121,7 +124,7 @@ const Navbar = ({ items = [] }) => {
                     </a>
                 )}
                 <NavbarContext.Provider value={{items}}>
-                    <DropDownSM />
+                    {/* <DropDownSM /> */}
                     {/* <DropDownMobile /> */}
                 </NavbarContext.Provider>
             </header>

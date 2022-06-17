@@ -33,7 +33,7 @@ const CrewTable = () => {
   if (error) return <p>{`Error! ${error}`}</p>;
 
   return (
-    <table className="table-auto mx-auto">
+    <table className="table-auto">
       <thead className="text-gray-700 uppercase bg-gray-50">
         <tr>
           <th className="px-2 py-1">#</th>
