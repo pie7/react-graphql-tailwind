@@ -1,8 +1,6 @@
 import Card from "./Card";
 
 const Upcoming = ({ data = [], rockets = [] }) => {
-    console.log(data)
-
     return (
         <div className='mx-6 flex flex-wrap'>
             {data?.map((launch, index) =>
