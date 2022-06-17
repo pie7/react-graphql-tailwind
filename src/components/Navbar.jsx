@@ -1,5 +1,6 @@
 import { createContext, useEffect, useContext } from 'react';
 import useToggle from "../hooks/useToggle";
+import { useKeydownEsc } from "../hooks/useKeydownEsc";
 
 const NavbarContext = createContext(null)
 
@@ -23,15 +24,8 @@ const Close = () =>
 const DropDownSM = () => {
     const [isToggle, handleToggle] = useToggle()
     const { items} = useContext(NavbarContext)
-    useEffect(() => {
-        const handleEsc = (e) => {
-            if (e.key === 'Esc' || e.key === 'Escape') {
-                handleToggle(false)
-            }
-        }
-        document.addEventListener('keydown', handleEsc)
-        return () => handleEsc
-    }, [handleToggle])
+
+    useKeydownEsc(handleToggle)
     return (
         <div className='ml-6 relative hidden sm:block'>
             <button
