@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { createContext, useEffect, useContext } from 'react';
 import useToggle from "../hooks/useToggle";
 import { useKeydownEsc } from "../hooks/useKeydownEsc";
@@ -93,10 +94,10 @@ const Navbar = ({ items = [] }) => {
         <header className='px-4 py-3 bg-black sm:flex sm:justify-between sm:items-center'>
             <div className='flex items-center justify-between'>
                 <div className='rounded-lg overflow-hidden'>
-                    <a className='block px-4 py-2 hover:bg-gray-500 hover:text-white'
-                        href="/" >
+                    <Link className='block px-4 py-2 hover:bg-gray-500 hover:text-white'
+                        to="/" >
                         <img src="https://picsum.photos/64/64" alt="" />
-                    </a>
+                    </Link>
                 </div>
                 <div className='sm:hidden'>
                     <button
