@@ -12,7 +12,7 @@ const Upcoming = ({ data = [], rockets = [] }) => {
                         mission_patch_small={launch.links.patch.small}
                         launch_success={launch.success}
                         launch_date_unix={launch.date_unix}
-                        rocket_name={rockets?.find(rocket => rocket.id === launch.rocket).name}
+                        rocket_name={(rockets?.find(rocket => rocket.id === launch.rocket) || {}).name}
                         ships_name={launch.fairings?.ships[0]?.name}
                     />
                 </div>
